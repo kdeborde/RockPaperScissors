@@ -1,0 +1,72 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:RockPaperScissors.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="700" d:DesignHeight="400"
+        x:Class="RockPaperScissors.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="RockPaperScissors"
+        SizeToContent="WidthAndHeight"
+        TransparencyLevelHint="AcrylicBlur"
+        Background="Transparent"
+        RequestedThemeVariant="Dark"
+        ExtendClientAreaToDecorationsHint="True">
+
+  <Design.DataContext>
+    <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+    <vm:MainWindowViewModel/>
+  </Design.DataContext>
+  <Panel>
+    <ExperimentalAcrylicBorder IsHitTestVisible="False">
+      <ExperimentalAcrylicBorder.Material>
+        <ExperimentalAcrylicMaterial
+            BackgroundSource="Digger"
+            TintColor="Black"
+            TintOpacity="1"
+            MaterialOpacity="0.65" />
+      </ExperimentalAcrylicBorder.Material>
+    </ExperimentalAcrylicBorder>
+    <Grid Margin="0 10">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="*"/>
+      </Grid.ColumnDefinitions>
+      <StackPanel Margin="30" Grid.Column="0">
+        <Label Margin="0 0 0 20" Content="Chose Rock, Paper, or Scissors:" />
+        <RadioButton x:Name="rock" Content="Rock" GroupName="RpsRadioGroup" IsChecked="True"/>
+        <RadioButton x:Name="paper" Content="Paper" GroupName="RpsRadioGroup"/>
+        <RadioButton x:Name="scissors" Content="Scissors" GroupName="RpsRadioGroup"/>
+        <Button Content="Play" Margin="0,30,0,30" Click="PlayButton_Click"/>
+        <StackPanel Orientation="Horizontal">
+          <Label Content="Player Choice: " />
+          <Label x:Name="PlayerChoiceText" Content="" Margin="0 0 0 10"/>
+        </StackPanel>        
+        <StackPanel Orientation="Horizontal" Margin="0 0 0 30">
+          <Label Content="ProgramChoice: " />
+          <Label x:Name="ProgramChoiceText" Content="" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+          <Label Content="Result: " />
+          <Label x:Name="ResultText" Content="" />
+        </StackPanel>
+      </StackPanel>
+      <Grid Grid.Column="1">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto"/>
+          <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Margin="30" Grid.Column="0">
+          <Label Content="Player Win Count"></Label>
+          <Label x:Name="PlayerWinCountLabel" Content="0" Margin="30" HorizontalAlignment="Center"/>
+        </StackPanel>
+        <StackPanel Margin="30" Grid.Column="1">
+          <Label Content="Program Win Count"></Label>
+          <Label x:Name="ProgramWinCountLabel" Content="0" Margin="30" HorizontalAlignment="Center"/>
+        </StackPanel>
+      </Grid>
+    </Grid>
+  </Panel>
+</Window>
